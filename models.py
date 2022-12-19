@@ -1,15 +1,17 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import func
+from sqlalchemy import Computed
 
 
 db = SQLAlchemy()
 
 def connect_db(app):
-  db.app = app
-  db.init_app(app)
+	db.app = app
+	db.init_app(app)
 
 
 class Pet(db.Model):
-    """This is the user model"""
+    """This is the pets model"""
     __tablename__ = 'pets'
 
     def __repr__(self):
@@ -23,6 +25,15 @@ class Pet(db.Model):
     age = db.Column(db.Integer)
     notes = db.Column(db.Text)
     available = db.Column(db.Boolean, default=True)
+
+"""
+could there be a field called obj in which all the 
+elements from the wtform could pass directly to each
+column like it does when updating pet fields? 
+ej: 
+	pet = User.query.get_or_404(id)
+	AddPetForm(obj=pet)
+"""
 
 
 

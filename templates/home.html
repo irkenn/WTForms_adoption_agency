@@ -1,0 +1,18 @@
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+<h2>Pets</h2>
+<ul>
+    {% for pet in all_pets %}
+        {% if pet.available == True %}
+        <div>
+            <img src="{{pet.photo_url}}" alt="Photo of the pet">
+            <a href="/{{pet.id}}"><li>{{ pet.name }}</a><span class="bold-text"> is available!</span></li>
+        </div>
+        {%endif%}
+    {% endfor %}
+</ul>
+<form action="/add" method="GET">
+<button >Add a Pet</button>
+</form>
+{% endblock %}
